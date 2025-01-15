@@ -5,16 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class TownGrid : MonoBehaviour
 {
-    public static TownGrid current;
-
-    public GridLayout gridLayout;
-
-    public Tilemap MainTileMap;
-    public TileBase TakenTile;
-    #region Building Placement
-
-    
-    #endregion
     #region Tilemap Mangement
     private static TileBase[] GetTileBlock(BoundsInt area, Tilemap tilemap)
     {
