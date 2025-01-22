@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    public static Game Instance; // Singleton-instans
+
     // Start is called before the first frame update
 
     //Clicker
@@ -36,8 +38,22 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI upgradeText;
     public int upgradePrize;
 
-    void Start()
+    private void Awake()
     {
+        // Sørg for, at kun én instans af Game.cs eksisterer
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Gør GameObjectet persistent
+            Debug.Log("Game singleton initialiseret korrekt.");
+        }
+        else
+        {
+            Destroy(gameObject); // Slet duplikater
+            Debug.LogWarning("Duplikat Game-instans slettet.");
+            return;
+        }
+
         //Clicker
         currentScore = 0;
         hitPower = 1;
